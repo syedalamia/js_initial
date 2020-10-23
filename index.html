@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>js practice</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body  onload="onloadfunc()">
+
+	<!--on click-->
+	<h1>1. on click</h1>
+	<p id="id1" onclick="lita()"> a little cute cat </p>
+
+	<!--on click event-->
+	<h1>2. on change event</h1>
+	<input type="text" onchange="pr_onchange()" id='onc1'>
+	<p id='onc'> this is on change event</p>
+
+
+	<!--on mouse over-->
+	<h1>3. on mouse over</h1>
+	<p id="omo">here will change</p>
+	<button onmouseover="mousing()">click it</button>
+
+
+
+
+
+
+	<!--document get element by classname-->
+	<h1>4. document get element class</h1>
+	<p class="chg_1" onclick="classing()"> i am lamia</p>
+
+
+	<!--get element by name-->
+	<h1>5. get element by name</h1>
+	<input type="text" name="zarah" value="mitushi">
+	<button onclick="knowingname()">click on it</button>
+	<p id="showing_tag"></p>
+
+	<!--get elements by tag name-->
+	<h1>6. get element tag name</h1>
+	<ul>
+		<li>orange</li>
+		<li>apple</li>
+		<li>banana</li>
+
+
+	</ul>
+	<button onclick="tag_practice()">click here</button>
+	<p id="suma"></p>
+
+
+
+	<!--on mouse out-->
+	<h1>7. on mouse out</h1>
+	<p  id="omo2" onmouseout="onmouseoutfun()">it will work when mouse out</p>
+
+
+
+	<!--on print-->
+	<h1>8. on after print</h1>
+	<div onafterprint="myprinting()">
+		i want to print this div. sp press the control+p
+	</div>
+
+	<!--animation start-->
+	<h1>9.  animation</h1>
+	<div id="animation_testing" onclick="myanim()">
+		<p>here is the animation work</p>
+
+	</div>
+
+	<!--before unload-->
+	<h1>10. before load</h1>
+
+	<div>
+		
+		<a href="https://www.facebook.com" >FAcebook</a>
+
+
+
+	</div>
+
+
+	<!--oncopy-->
+	<h1>11. on copy</h1>
+	<div>
+		<p id="copy_test">
+			i am lamia and now trying to test the copy
+		</p>
+
+
+	</div>
+
+	<!--image loading error-->
+	<img src="sin.jpg" alt="err_img" onerror="my_error()">
+
+
+	<!--on  search-->
+	<h1>12. searching something</h1>
+	<input type="search" id="myInput" onsearch="mysearchFunction()" value="lam">
+	<p id="search_msg"></p>
+
+	<!--on input-->
+	<h1>13. on input</h1>
+	<input type="text" id="myInput2" oninput="myINputFunction()">
+	<p id="inputholder"></p>
+
+
+
+	<script>
+	//dom multiple style
+	function lita(){
+		document.getElementById("id1").style.cssText = "color: red; font-weight: 700; font-size:100px";
+	}
+
+	//events
+
+	//onClick
+	function pr_onchange(){
+		var x = document.getElementById("onc1").value;
+		document.getElementById("onc").innerHTML=x;
+
+	}
+	//get element by class
+	function classing(){
+		document.getElementsByClassName('chg_1')[0].innerHTML="for class changing u've to add another subscript [0]";
+		
+	}
+	//getelements by name
+	function knowingname(){
+		var x=document.getElementsByName("zarah")[0].tagName;
+		document.getElementById('showing_tag').innerHTML=x;
+	}
+	//getelements by tag name
+	function tag_practice(){
+		var x=document.getElementsByTagName("LI");
+		document.getElementById("suma").innerHTML=x[0].innerHTML;
+
+	}
+
+	//onmouse over
+	function mousing(){
+		document.getElementById("omo").innerHTML="mouse over";
+	}
+
+	//onmouse out
+	function onmouseoutfun(){
+		document.getElementById("omo2").innerHTML="mouse out";
+	}
+	//onload
+	function onloadfunc(){
+		alert("the page is loaded");
+	}
+
+	//onprint
+	function myprinting(){
+		alert("now the  whole page will print better keep this function inside  body");
+	}
+
+	//animation
+	function myanim(){
+		var x=document.getElementById("animation_testing");
+		x.style.animation= "mymove 4s 2"
+
+
+		x.addEventListener("animationstart",function myStartFunction() {
+			this.innerHTML = "animationstart event occured - The animation has started";
+			this.style.backgroundColor = "pink";
+		});
+		x.addEventListener("animationiteration", function myRepeatFunction() {
+			this.innerHTML = "animationiteration event occured - The animation was played again";
+			this.style.backgroundColor = "lightblue";
+		});
+		x.addEventListener("animationend",function myEndFunction() {
+			this.innerHTML = "animationend event occured - The animation has completed";
+			this.style.backgroundColor = "lightgray";
+		});
+
+
+
+	}
+
+	//beforeunload
+	window.addEventListener("beforeunload", function(event) {
+		event.returnValue = "Write something clever here..";
+	});
+
+	//oncopy
+
+
+	document.getElementById("copy_test").addEventListener("copy",myCopyF)
+	function myCopyF(){
+		alert("you have  copied the paragraph");
+	}
+
+
+	//error
+	function my_error(){
+		alert('image not loading');
+	}
+
+	//search alert
+	function mysearchFunction(){
+		document.getElementById("search_msg").innerHTML="you've searched for"+" "+document.getElementById("myInput").value;
+	}
+
+	//input
+	function myINputFunction(){
+		document.getElementById("inputholder").innerHTML=document.getElementById("myInput2").value;
+	}
+</script>
+
+</body>
+</html>
